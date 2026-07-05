@@ -24,6 +24,8 @@ Tomas Amaya y David Gaitan.
 > Copy-Item ProyectoFinal/.env.example ProyectoFinal/.env   # completar con sus credenciales de MySQL
 > # Tener MySQL corriendo en su localhost:3306
 > cd ProyectoFinal; python main.py
+
+Si hay que enviar esto al profe no envie estos .md porque es como funciona la app :p
 > ```
 
 ### Detalle de cada paso
@@ -109,3 +111,6 @@ calculadora_ue/
         ├── test_user_repository.py
         └── test_login_flujo.py
 ```
+Este es el comando para ejecutar todas las pruebas
+cd C:\Users\tomas\Desktop\RepoDeDavid\calculadora_ue\ProyectoFinal Este es mi directorio jijiji 
+python -m pytest tests/ -v
