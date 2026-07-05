@@ -1,5 +1,5 @@
-# Tomás Amaya y David Gaitán
-from estilos import C_OK, C_ERROR
+# Tomas Amaya y David Gaitan
+from estilos import C_OK
 from tkinter import messagebox
 
 def ejecutar(entry1, entry2, lbl_resultado):

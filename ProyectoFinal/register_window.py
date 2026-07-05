@@ -1,11 +1,12 @@
-# Tomás Amaya y David Gaitán
+# Tomas Amaya y David Gaitan
 import tkinter as tk
 from tkinter import messagebox
+from mysql.connector import IntegrityError
 
 from estilos import (C_FONDO, C_ACENTO, C_TEXTO, C_SUBTEXTO, C_BTN,
-                      ventana_centrada, hacer_firma, make_scrollable_center,
-                      hacer_campo, hacer_boton)
-from user_repository import UserRepository
+                     ventana_centrada, hacer_firma, make_scrollable_center,
+                     hacer_campo, hacer_boton)
+from user_repository import UserRepository, ConexionError
 
 
 class RegisterWindow:
@@ -28,7 +29,7 @@ class RegisterWindow:
     def crear_componentes(self):
         tk.Frame(self.ventana, bg=C_ACENTO, height=4).pack(fill="x")
 
-        # ── Barra superior con flecha de regreso ────────────────
+        # Barra superior con flecha de regreso
         barra = tk.Frame(self.ventana, bg=C_FONDO)
         barra.pack(fill="x", padx=24, pady=(14, 0))
         tk.Button(barra, text="←", font=("Segoe UI", 16, "bold"),
@@ -67,8 +68,20 @@ class RegisterWindow:
             messagebox.showwarning("Campos vacíos", "Todos los campos son obligatorios")
             return
 
-        registrado = self.repository.registrar_usuario(
-            nombre, cedula, celular, correo, usuario, clave)
+        try:
+            registrado = self.repository.registrar_usuario(
+                nombre, cedula, celular, correo, usuario, clave)
+        except ConexionError:
+            messagebox.showerror(
+                "Sin conexión",
+                "No se pudo conectar a la base de datos. "
+                "Verifique que MySQL esté corriendo y que el .env sea correcto."
+            )
+            return
+        except IntegrityError:
+            messagebox.showerror("Usuario duplicado",
+                                 "Ya existe un usuario con ese nombre. Elija otro.")
+            return
 
         if registrado:
             messagebox.showinfo("Registro exitoso", "Usuario registrado correctamente")

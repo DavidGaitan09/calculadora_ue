@@ -1,15 +1,15 @@
-# Tomás Amaya y David Gaitán
+# Tomas Amaya y David Gaitan
 import tkinter as tk
 
 from estilos import (C_FONDO, C_PANEL, C_BORDE, C_ACENTO, C_TEXTO,
-                      C_SUBTEXTO, C_BTN, C_BTN_ALT, C_BTN_HOV,
-                      C_MARCA_ROJO, pantalla_completa, hacer_firma)
+                     C_SUBTEXTO, C_BTN, C_BTN_ALT, C_BTN_HOV,
+                     C_MARCA_ROJO, pantalla_completa, hacer_firma)
 import suma, resta, multiplicacion, division
 from operacion_window import abrir_operacion
 
 
 class HomeWindow:
-    """HomeActivity: saludo al usuario, botón 'Cerrar sesión' y las
+    """HomeActivity: saludo al usuario, boton 'Cerrar sesion' y las
     4 opciones de la calculadora (Sumar, Restar, Multiplicar, Dividir),
     igual que en el tablero."""
 
@@ -28,7 +28,7 @@ class HomeWindow:
     def crear_componentes(self):
         tk.Frame(self.ventana, bg=C_ACENTO, height=4).pack(fill="x")
 
-        # ── Barra superior: saludo + cerrar sesión ──────────────
+        # Barra superior: saludo + cerrar sesion
         barra = tk.Frame(self.ventana, bg=C_FONDO)
         barra.pack(fill="x", padx=40, pady=(20, 0))
 
@@ -36,17 +36,17 @@ class HomeWindow:
         tk.Label(barra, text=f"Hola, {nombre}", font=("Segoe UI", 16, "bold"),
                  bg=C_FONDO, fg=C_TEXTO).pack(side="left")
 
-        tk.Button(barra, text="Cerrar sesión", font=("Segoe UI", 11, "bold"),
+        tk.Button(barra, text="Cerrar sesion", font=("Segoe UI", 11, "bold"),
                   command=self.cerrar_sesion, bg=C_MARCA_ROJO, fg=C_TEXTO,
                   relief="flat", bd=0, activebackground="#a80029",
                   activeforeground=C_TEXTO, cursor="hand2",
                   padx=16, pady=6).pack(side="right")
 
-        tk.Label(self.ventana, text="¿Qué quieres hacer?",
+        tk.Label(self.ventana, text="Que quieres hacer?",
                  font=("Segoe UI", 13), bg=C_FONDO, fg=C_SUBTEXTO
                  ).pack(pady=(30, 10))
 
-        # ── Grid 2x2 con las 4 operaciones ──────────────────────
+        # Grid 2x2 con las 4 operaciones
         wrapper = tk.Frame(self.ventana, bg=C_FONDO)
         wrapper.pack(expand=True, fill="both")
         wrapper.columnconfigure(0, weight=1)
@@ -76,9 +76,8 @@ class HomeWindow:
         hacer_firma(self.ventana)
 
     def abrir_operacion(self, nombre_op, modulo, color):
-        abrir_operacion_ventana = abrir_operacion(
-            self.ventana, nombre_op, "Operaciones básicas", modulo, color)
-        return abrir_operacion_ventana
+        abrir_operacion(
+            self.ventana, nombre_op, "Operaciones basicas", modulo, color)
 
     def cerrar_sesion(self):
         self.ventana.destroy()

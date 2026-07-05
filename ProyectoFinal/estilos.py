@@ -1,13 +1,13 @@
-# Tomás Amaya y David Gaitán
+# Tomas Amaya y David Gaitan
 """
-Estilos compartidos por toda la aplicación (Login, Registro, Home y
+Estilos compartidos por toda la aplicacion (Login, Registro, Home y
 las calculadoras). Se mantiene la misma paleta oscura que ya usaban
 las calculadoras para que TODAS las pantallas se vean exactamente igual.
 """
 import os
 import tkinter as tk
 
-# ── Paleta base (idéntica a la de las calculadoras) ────────────────
+# Paleta base (identica a la de las calculadoras)
 C_FONDO    = "#0f172a"
 C_PANEL    = "#1e293b"
 C_BORDE    = "#334155"
@@ -20,11 +20,11 @@ C_ERROR    = "#ef4444"
 C_OK       = "#22c55e"
 C_BTN_ALT  = "#312e81"
 
-# ── Colores de marca Uniempresarial (tomados del logo) ─────────────
+# Colores de marca Uniempresarial (tomados del logo)
 C_MARCA_ROJO = "#de0034"
 C_MARCA_AZUL = "#0d1f86"
 
-# ── Tipografías ─────────────────────────────────────────────────
+# Tipografias
 F_TITULO = ("Segoe UI", 15, "bold")
 F_LABEL  = ("Segoe UI", 11)
 F_ENTRY  = ("Segoe UI", 13)
@@ -32,7 +32,7 @@ F_BTN    = ("Segoe UI", 12, "bold")
 F_RES    = ("Segoe UI", 15, "bold")
 F_FIRMA  = ("Segoe UI", 9)
 
-FIRMA_TEXTO = "Realizado por Tomás Amaya y David Gaitán"
+FIRMA_TEXTO = "Realizado por Tomas Amaya y David Gaitan"
 
 ASSETS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 
@@ -49,15 +49,15 @@ def pantalla_completa(v):
 
 
 def ventana_centrada(v, ancho=560, alto=760):
-    """Deja la ventana/toplevel con un tamaño fijo (NO pantalla completa),
+    """Deja la ventana/toplevel con un tamano fijo (NO pantalla completa),
     centrada en la pantalla del usuario. Se puede seguir redimensionando
     a mano si el contenido lo necesita."""
     v.update_idletasks()
     sw = v.winfo_screenwidth()
     sh = v.winfo_screenheight()
 
-    # Si la pantalla es más pequeña que el tamaño pedido, se ajusta
-    # dejando un margen, para que nunca quede más grande que la pantalla.
+    # Si la pantalla es mas pequena que el tamano pedido, se ajusta
+    # dejando un margen, para que nunca quede mas grande que la pantalla.
     ancho = min(ancho, sw - 40)
     alto = min(alto, sh - 60)
 
@@ -80,10 +80,10 @@ def base_ventana(root, titulo):
 
 
 def hacer_firma(v):
-    """Pie de página igual en Login, Registro y Home."""
+    """Pie de pagina igual en Login, Registro y Home."""
     tk.Frame(v, bg=C_BORDE, height=1).pack(fill="x", padx=40, pady=(10, 0), side="bottom")
     tk.Label(v, text=FIRMA_TEXTO, font=F_FIRMA, bg=C_FONDO,
-              fg=C_SUBTEXTO).pack(side="bottom", pady=8)
+             fg=C_SUBTEXTO).pack(side="bottom", pady=8)
 
 
 def hacer_header(v, titulo, sub):
@@ -114,8 +114,8 @@ def make_center(v, width=460):
 def make_scrollable_center(v, width=460):
     """Igual que make_center (frame centrado para meter campos), pero
     con una barra de scroll vertical que aparece sola si el contenido
-    no cabe en la ventana. Así el botón final SIEMPRE es alcanzable,
-    sin importar el tamaño de la ventana o de la pantalla."""
+    no cabe en la ventana. Asi el boton final SIEMPRE es alcanzable,
+    sin importar el tamano de la ventana o de la pantalla."""
     contenedor = tk.Frame(v, bg=C_FONDO)
     contenedor.pack(fill="both", expand=True)
 
@@ -183,17 +183,10 @@ def hacer_boton(parent, texto, cmd, color=None, ancho=20, **grid_kwargs):
     return b
 
 
-def leer(e, nombre):
-    val = e.get().strip()
-    if not val:
-        raise ValueError(f"El campo '{nombre}' no puede estar vacío.")
-    return float(val)
-
-
 def cargar_logo(parent, size=150):
-    """Carga el logo de Uniempresarial como PhotoImage (usa Pillow si está
+    """Carga el logo de Uniempresarial como PhotoImage (usa Pillow si esta
     disponible para poder redimensionar; si no, la redimensiona igual con
-    subsample para que nunca se muestre a tamaño completo)."""
+    subsample para que nunca se muestre a tamano completo)."""
     ruta = os.path.join(ASSETS_DIR, "logo.png")
     try:
         from PIL import Image, ImageTk

@@ -1,11 +1,11 @@
-# Tomás Amaya y David Gaitán
+# Tomas Amaya y David Gaitan
 """Ventana genérica para una operación (Sumar, Restar, Multiplicar o
 Dividir), reutilizando la lógica original de suma.py / resta.py /
 multiplicacion.py / division.py."""
 import tkinter as tk
 from estilos import (C_FONDO, C_PANEL, C_BORDE, C_ACENTO, C_TEXTO,
-                      C_SUBTEXTO, F_LABEL, F_ENTRY, F_RES, F_BTN,
-                      base_ventana, hacer_header, hacer_firma, make_center)
+                     C_SUBTEXTO, F_LABEL, F_ENTRY, F_RES, F_BTN,
+                     base_ventana, hacer_header, hacer_firma, make_center)
 import limpiar
 
 
@@ -32,8 +32,8 @@ def abrir_operacion(root, titulo, subtitulo, modulo_operacion, color_btn):
                   highlightcolor=C_ACENTO, width=48)
     e2.grid(row=3, column=0, sticky="ew", ipady=10, pady=(0, 4))
 
-    lbl_res = tk.Label(c, text="Resultado: —", font=F_RES,
-                        bg=C_FONDO, fg=C_ACENTO)
+    lbl_res = tk.Label(c, text="Resultado: ?", font=F_RES,
+                      bg=C_FONDO, fg=C_ACENTO)
     lbl_res.grid(row=4, column=0, pady=22)
 
     tk.Frame(c, bg=C_BORDE, height=1).grid(row=5, column=0, sticky="ew")

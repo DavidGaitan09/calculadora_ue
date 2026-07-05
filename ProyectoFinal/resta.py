@@ -1,4 +1,4 @@
-# Tomás Amaya y David Gaitán
+# Tomas Amaya y David Gaitan
 from estilos import C_OK
 from tkinter import messagebox
 
