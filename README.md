@@ -15,48 +15,51 @@ Tomas Amaya y David Gaitan.
 
 ## Setup
 
-### 1. Requisitos
-- Python 3.10 o superior.
-- Un servidor MySQL local (por defecto se asume `localhost:3306`,
-  usuario `root` y password vacio, pero se puede cambiar via `.env`).
+> Mire perrito, para que funcione las conexiones tiene que poner las
+> credenciales en el `.env` de su BD para la conexion, y tiene que pegar
+> esto en la terminal:
+>
+> ```powershell
+> pip install -r ProyectoFinal/requirements.txt
+> Copy-Item ProyectoFinal/.env.example ProyectoFinal/.env   # completar con sus credenciales de MySQL
+> # Tener MySQL corriendo en su localhost:3306
+> cd ProyectoFinal; python main.py
+> ```
 
-### 2. Instalar dependencias
-```powershell
-pip install -r ProyectoFinal/requirements.txt
-```
+### Detalle de cada paso
 
-Para correr los tests ademas:
-```powershell
-pip install -r ProyectoFinal/requirements-dev.txt
-```
+1. **Instalar dependencias**:
+   ```powershell
+   pip install -r ProyectoFinal/requirements.txt
+   ```
 
-### 3. Configurar el .env
-Copia el template y completa los valores de tu MySQL local:
-```powershell
-Copy-Item ProyectoFinal\.env.example ProyectoFinal\.env
-# edita ProyectoFinal\.env con tus credenciales reales
-```
+2. **Configurar el `.env`**: copiar el template y completar con las
+   credenciales **del MySQL de su PC**:
+   ```powershell
+   Copy-Item ProyectoFinal/.env.example ProyectoFinal/.env
+   # editar ProyectoFinal/.env con sus credenciales reales
+   ```
+   Variables:
 
-Variables aceptadas:
+   | Variable          | Default         | Descripcion                              |
+   |-------------------|-----------------|------------------------------------------|
+   | MYSQL_HOST        | localhost       | Host del servidor MySQL                  |
+   | MYSQL_USER        | root            | Usuario de MySQL                         |
+   | MYSQL_PASSWORD    | (vacio)         | Password del usuario                     |
+   | MYSQL_PORT        | 3306            | Puerto del servidor MySQL                |
+   | MYSQL_DATABASE    | sistema_login   | Nombre de la BD (se crea sola al arrancar)|
 
-| Variable          | Default         | Descripcion                              |
-|-------------------|-----------------|------------------------------------------|
-| MYSQL_HOST        | localhost       | Host del servidor MySQL                  |
-| MYSQL_USER        | root            | Usuario de MySQL                         |
-| MYSQL_PASSWORD    | (vacio)         | Password del usuario                     |
-| MYSQL_PORT        | 3306            | Puerto del servidor MySQL                |
-| MYSQL_DATABASE    | sistema_login   | Nombre de la base de datos (se crea sola)|
+3. **Tener MySQL corriendo** en `localhost:3306`.
 
-> La base de datos y la tabla `usuarios` **se crean automaticamente**
-> al arrancar la app la primera vez. No hace falta correr scripts SQL
-> manuales.
+4. **Arrancar la app**:
+   ```powershell
+   cd ProyectoFinal
+   python main.py
+   ```
 
-### 4. Correr la app
-Desde la raiz del repo:
-```powershell
-cd ProyectoFinal
-python main.py
-```
+> La base de datos `sistema_login` y la tabla `usuarios` **se crean
+> automaticamente** al arrancar la app la primera vez. No hace falta
+> correr scripts SQL manuales.
 
 ## Tests
 ```powershell
@@ -67,7 +70,6 @@ Con cobertura:
 ```powershell
 pytest tests/ -v --cov=. --cov-report=term-missing
 ```
-
 Los tests mockean la conexion a MySQL, asi que **no** necesitan un
 servidor real para correrse.
 
